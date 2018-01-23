@@ -23,9 +23,12 @@ var availableLocales = [
 ];
 
 // Find the best fitting locale given an input locale
-var newLocale = locale.bestMatchingLocale('es-MX', availableLocales), 'es-ES');
+var newLocale = locale.bestMatchingLocale('es-MX', availableLocales));
+
+// Returns `es-ES` since `es-MX` is not an available locale.
 
 var codedLocale = locale.parseLocaleIntoCodes('es-MX');
+
 // Returns:
 // {
 //     locale: 'es-MX',
