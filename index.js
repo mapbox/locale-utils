@@ -1,7 +1,10 @@
 function bestMatchingLocale (inputLocale, availableLocales) {
 
     /// Normalize
-    inputLocale = inputLocale.toLowerCase();
+    inputLocale = inputLocale
+        .replace(/_/g, '-')
+        .toLowerCase();
+        
     availableLocales = availableLocales.map(function(l) {
         return l.toLowerCase();
     });
