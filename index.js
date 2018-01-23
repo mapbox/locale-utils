@@ -1,5 +1,5 @@
 function bestMatchingLocale (inputLocale, availableLocales) {
-  if (availableLocales[inputLocale]) return inputLocale;
+    if (availableLocales[inputLocale]) return inputLocale;
 
     var localeCodes = parseLocaleIntoCodes(inputLocale);
     var languageCode = localeCodes.language;
