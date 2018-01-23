@@ -1,5 +1,7 @@
 ## Locale Utils
 
+A helper library for finding an appropriate locale from a list of available locales given an input locale.
+
 ### Installation
 
 ```
@@ -23,7 +25,7 @@ var availableLocales = [
 // Find the best fitting locale given an input locale
 var newLocale = locale.bestMatchingLocale('es-MX', availableLocales), 'es-ES');
 
-var localeCodes = locale.parseLocaleIntoCodes('es-MX');
+var codedLocale = locale.parseLocaleIntoCodes('es-MX');
 // Returns:
 // {
 //     locale: 'es-MX',
