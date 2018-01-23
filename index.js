@@ -4,7 +4,7 @@ function bestMatchingLocale (inputLocale, availableLocales) {
     inputLocale = inputLocale
         .replace(/_/g, '-')
         .toLowerCase();
-        
+
     availableLocales = availableLocales.map(function(l) {
         return l.toLowerCase();
     });
@@ -51,7 +51,7 @@ function bestMatchingLocale (inputLocale, availableLocales) {
         return anyCountry.locale;
     }
 
-    return 'en-US';
+    return null;
 }
 
 function parseLocaleIntoCodes (locale) {
