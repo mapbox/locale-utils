@@ -11,8 +11,10 @@ var availableLocales = [
 ];
 
 tape('test bestMatchingLocale', function(t) {
+    t.equal(locale.bestMatchingLocale('EN', availableLocales), 'en-US');
     t.equal(locale.bestMatchingLocale('en', availableLocales), 'en-US');
-    t.equal(locale.bestMatchingLocale('en-gb', availableLocales), 'en-US');
+    t.equal(locale.bestMatchingLocale('en-GB', availableLocales), 'en-GB');
+    t.equal(locale.bestMatchingLocale('en-gb', availableLocales), 'en-GB');
     t.equal(locale.bestMatchingLocale('foobar', availableLocales), 'en-US');
     t.equal(locale.bestMatchingLocale('es-MX', availableLocales), 'es-ES');
     t.equal(locale.bestMatchingLocale('zh-Hans-region', availableLocales), 'zh-Hans');
@@ -35,7 +37,7 @@ tape('test parseLocaleIntoCodes', function(t) {
         region: 'MX'
     });
 
-    t.deepEqual(locale.parseLocaleIntoCodes('zh-Hans-HK'), {
+    t.deepEqual(locale.parseLocaleIntoCodes('zh-hans-HK'), {
         locale: 'zh-Hans-HK',
         language: 'zh',
         script: 'Hans',

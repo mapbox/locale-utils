@@ -1,24 +1,32 @@
 function bestMatchingLocale (inputLocale, availableLocales) {
-    if (availableLocales[inputLocale]) return inputLocale;
+
+    /// Normalize
+    inputLocale = inputLocale.toLowerCase();
+    availableLocales = availableLocales.map(function(l) {
+        return l.toLowerCase();
+    });
 
     var localeCodes = parseLocaleIntoCodes(inputLocale);
+
+    if (availableLocales.indexOf(inputLocale) > -1) return localeCodes.locale;
+
     var languageCode = localeCodes.language;
     var scriptCode = localeCodes.script;
     var regionCode = localeCodes.region;
 
     // Same language code and script code (lng-Scpt)
     if (availableLocales[languageCode + '-' + scriptCode]) {
-        return languageCode + '-' + scriptCode;
+        return localeCodes.locale;
     }
 
     // Same language code and region code (lng-CC)
     if (availableLocales[languageCode + '-' + regionCode]) {
-        return languageCode + '-' + regionCode;
+        return localeCodes.locale;
     }
 
     // Same language code (lng)
     if (availableLocales[languageCode]) {
-        return languageCode;
+        return localeCodes.locale;
     }
 
     // All available locales, split up into coded pieces
