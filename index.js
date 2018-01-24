@@ -18,18 +18,18 @@ function bestMatchingLocale (inputLocale, availableLocales) {
     var regionCode = localeCodes.region;
 
     // Same language code and script code (lng-Scpt)
-    if (availableLocales[languageCode + '-' + scriptCode]) {
-        return localeCodes.locale;
+    if (includes(availableLocales, languageCode + '-' + scriptCode)) {
+        return languageCode + '-' + scriptCode;
     }
 
     // Same language code and region code (lng-CC)
-    if (availableLocales[languageCode + '-' + regionCode]) {
-        return localeCodes.locale;
+    if (includes(availableLocales, languageCode + '-' + regionCode)) {
+        return languageCode + '-' + regionCode;
     }
 
     // Same language code (lng)
-    if (availableLocales[languageCode]) {
-        return localeCodes.locale;
+    if (includes(availableLocales, languageCode)) {
+        return languageCode;
     }
 
     // All available locales, split up into coded pieces
@@ -76,6 +76,10 @@ function parseLocaleIntoCodes (locale) {
         script: match[2],
         region: match[3]
     };
+}
+
+function includes(inArray, toFind) {
+    return inArray.indexOf(toFind) > -1;
 }
 
 

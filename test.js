@@ -4,6 +4,7 @@ var locale = require('./');
 var availableLocales = [
     'en-US',
     'en-GB',
+    'es',
     'es-ES',
     'pt-PT',
     'tr',
@@ -17,7 +18,8 @@ tape('test bestMatchingLocale', function(t) {
     t.equal(locale.bestMatchingLocale('en-gb', availableLocales), 'en-GB');
     t.equal(locale.bestMatchingLocale('en_gb', availableLocales), 'en-GB');
     t.equal(locale.bestMatchingLocale('foobar', availableLocales), null);
-    t.equal(locale.bestMatchingLocale('es-MX', availableLocales), 'es-ES');
+    t.equal(locale.bestMatchingLocale('es-MX', availableLocales), 'es');
+    t.equal(locale.bestMatchingLocale('es-mx', availableLocales), 'es');
     t.equal(locale.bestMatchingLocale('zh-Hans-region', availableLocales), 'zh-Hans');
     t.equal(locale.bestMatchingLocale('pt-BR', availableLocales), 'pt-PT');
     t.end();
