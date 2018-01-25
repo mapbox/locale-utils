@@ -10,6 +10,9 @@ function bestMatchingLocale (inputLocale, availableLocales) {
     });
 
     var localeCodes = parseLocaleIntoCodes(inputLocale);
+    if (!localeCodes) {
+        return null;
+    }
 
     if (availableLocales.indexOf(inputLocale) > -1) return localeCodes.locale;
 
@@ -36,7 +39,10 @@ function bestMatchingLocale (inputLocale, availableLocales) {
     var availableLocaleCodes = availableLocales.map(parseLocaleIntoCodes);
 
     // Same language code and any script code (lng-Scpx) and the found language contains a script
-    var anyScript = availableLocaleCodes.find(function (localeCode) {
+    var anyScript = availableLocaleCodes.find(function (localeCode, idx) {
+        if (localeCode === null) {
+            throw 'Invalid available locale code "' + availableLocales[idx] + '".';
+        }
         return localeCode.language === languageCode && localeCode.script;
     });
     if (anyScript) {
@@ -56,6 +62,10 @@ function bestMatchingLocale (inputLocale, availableLocales) {
 
 function parseLocaleIntoCodes (locale) {
     var match = locale.match(/^(\w\w\w?)(?:-(\w\w\w\w))?(?:-(\w\w))?\b/i);
+    if (!match) {
+        return null;
+    }
+    
     var localeParts = [];
     if (match[1]) {
         match[1] = match[1].toLowerCase();
