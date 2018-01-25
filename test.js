@@ -22,6 +22,9 @@ tape('test bestMatchingLocale', function(t) {
     t.equal(locale.bestMatchingLocale('es-mx', availableLocales), 'es');
     t.equal(locale.bestMatchingLocale('zh-Hans-region', availableLocales), 'zh-Hans');
     t.equal(locale.bestMatchingLocale('pt-BR', availableLocales), 'pt-PT');
+    t.throws(function () {
+        locale.bestMatchingLocale('en', ['foobar']);
+    }, /foobar/);
     t.end();
 });
 
@@ -40,11 +43,21 @@ tape('test parseLocaleIntoCodes', function(t) {
         region: 'MX'
     });
 
+    t.deepEqual(locale.parseLocaleIntoCodes('spa-ES'), {
+        locale: 'spa-ES',
+        language: 'spa',
+        script: undefined,
+        region: 'ES'
+    });
+
     t.deepEqual(locale.parseLocaleIntoCodes('zh-hans-HK'), {
         locale: 'zh-Hans-HK',
         language: 'zh',
         script: 'Hans',
         region: 'HK'
     });
+    
+    t.equal(locale.parseLocaleIntoCodes('foobar'), null);
+    
     t.end();
 });
