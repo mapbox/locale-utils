@@ -55,7 +55,7 @@ function bestMatchingLocale (inputLocale, availableLocales) {
 }
 
 function parseLocaleIntoCodes (locale) {
-    var match = locale.match(/(\w\w)(?:-(\w\w\w\w))?(?:-(\w\w))?/i);
+    var match = locale.match(/^(\w\w\w?)(?:-(\w\w\w\w))?(?:-(\w\w))?\b/i);
     var localeParts = [];
     if (match[1]) {
         match[1] = match[1].toLowerCase();
