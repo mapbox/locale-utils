@@ -1,6 +1,9 @@
+
 ## Locale Utils
 
 A helper library for finding an appropriate locale from a list of available locales given an input locale.
+
+[![Build Status](https://travis-ci.org/mapbox/locale-utils.svg?branch=master)](https://travis-ci.org/mapbox/locale-utils)
 
 ### Installation
 
