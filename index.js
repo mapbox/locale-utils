@@ -1,3 +1,5 @@
+var deprecatedLocales = require('./lib/deprecated-locales.json');
+
 function bestMatchingLocale (inputLocale, availableLocales) {
 
     /// Normalize
@@ -6,7 +8,7 @@ function bestMatchingLocale (inputLocale, availableLocales) {
         .toLowerCase();
 
     availableLocales = availableLocales.map(function(l) {
-        return l.toLowerCase();
+        return getStandardLanguage(l.toLowerCase());
     });
 
     var localeCodes = parseLocaleIntoCodes(inputLocale);
@@ -65,10 +67,10 @@ function parseLocaleIntoCodes (locale) {
     if (!match) {
         return null;
     }
-    
+
     var localeParts = [];
     if (match[1]) {
-        match[1] = match[1].toLowerCase();
+        match[1] = getStandardLanguage(match[1].toLowerCase());
         localeParts.push(match[1]);
     }
     if (match[2]) {
@@ -86,6 +88,14 @@ function parseLocaleIntoCodes (locale) {
         script: match[2],
         region: match[3]
     };
+}
+
+function getStandardLanguage(language) {
+    if (deprecatedLocales[language]) {
+        return deprecatedLocales[language]
+    } else {
+        return language;
+    }
 }
 
 function includes(inArray, toFind) {

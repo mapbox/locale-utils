@@ -8,7 +8,10 @@ var availableLocales = [
     'es-ES',
     'pt-PT',
     'tr',
-    'zh-Hans'
+    'zh-Hans',
+    'iw',
+    'ji',
+    'in'
 ];
 
 tape('test bestMatchingLocale', function(t) {
@@ -22,6 +25,13 @@ tape('test bestMatchingLocale', function(t) {
     t.equal(locale.bestMatchingLocale('es-mx', availableLocales), 'es');
     t.equal(locale.bestMatchingLocale('zh-Hans-region', availableLocales), 'zh-Hans');
     t.equal(locale.bestMatchingLocale('pt-BR', availableLocales), 'pt-PT');
+
+    t.equal(locale.bestMatchingLocale('iw', availableLocales), 'he', 'Test deprecated locale');
+    t.equal(locale.bestMatchingLocale('iw-IL', availableLocales), 'he', 'Test deprecated locale');
+    t.equal(locale.bestMatchingLocale('iw', ['iw-IL']), 'he-IL', 'Test deprecated locale');
+    t.equal(locale.bestMatchingLocale('ji', availableLocales), 'yi', 'Test deprecated locale');
+    t.equal(locale.bestMatchingLocale('in', availableLocales), 'id', 'Test deprecated locale');
+
     t.throws(function () {
         locale.bestMatchingLocale('en', ['foobar']);
     }, /foobar/);
@@ -56,8 +66,8 @@ tape('test parseLocaleIntoCodes', function(t) {
         script: 'Hans',
         region: 'HK'
     });
-    
+
     t.equal(locale.parseLocaleIntoCodes('foobar'), null);
-    
+
     t.end();
 });
