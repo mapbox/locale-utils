@@ -1,6 +1,6 @@
 {
   "name": "@mapbox/locale-utils",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A helper library for finding an appropriate locale from a list of available locales given an input locale.",
   "main": "index.js",
   "scripts": {
