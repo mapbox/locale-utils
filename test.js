@@ -28,6 +28,7 @@ tape('test bestMatchingLocale', function(t) {
 
     t.equal(locale.bestMatchingLocale('iw', availableLocales), 'he', 'Test deprecated locale');
     t.equal(locale.bestMatchingLocale('iw-IL', availableLocales), 'he', 'Test deprecated locale');
+    t.equal(locale.bestMatchingLocale('iw', ['iw-IL']), 'he-IL', 'Test deprecated locale');
     t.equal(locale.bestMatchingLocale('ji', availableLocales), 'yi', 'Test deprecated locale');
     t.equal(locale.bestMatchingLocale('in', availableLocales), 'id', 'Test deprecated locale');
 
