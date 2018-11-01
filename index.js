@@ -1,4 +1,4 @@
-var deprecatedLocales = require('./lib/deprecated-locales.json');
+var deprecatedLocales = require('./lib/language-aliases.json');
 
 function bestMatchingLocale (inputLocale, availableLocales) {
 
