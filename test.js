@@ -11,7 +11,8 @@ var availableLocales = [
     'zh-Hans',
     'iw',
     'ji',
-    'in'
+    'in',
+    'ar'
 ];
 
 tape('test bestMatchingLocale', function(t) {
@@ -31,6 +32,7 @@ tape('test bestMatchingLocale', function(t) {
     t.equal(locale.bestMatchingLocale('iw', ['iw-IL']), 'he-IL', 'Test deprecated locale');
     t.equal(locale.bestMatchingLocale('ji', availableLocales), 'yi', 'Test deprecated locale');
     t.equal(locale.bestMatchingLocale('in', availableLocales), 'id', 'Test deprecated locale');
+    t.equal(locale.bestMatchingLocale('ar', availableLocales), 'arb', 'Test deprecated locale');
 
     t.throws(function () {
         locale.bestMatchingLocale('en', ['foobar']);
